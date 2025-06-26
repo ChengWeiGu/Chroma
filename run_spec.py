@@ -124,7 +124,7 @@ def main():
         
         # Spec document object
         print("Start creating documents....")
-        scanner = SpecScanner()
+        scanner = SpecScanner(args.src)
         doc_list = scanner.scan_folder_and_create_document()
         
         # Insert documents one by one to avoid rate limiting
