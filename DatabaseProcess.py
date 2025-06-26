@@ -84,7 +84,7 @@ if __name__ == "__main__":
         "embedding_function":embedding_function}
 
     # test searching
-    query = "How to use"
+    query = "How to use http request via js object"
     lcdb_chroma = LangchainChromaDB(chroma_login_info)
     lcdb_chroma.init_database()
     res_docs = lcdb_chroma.lc_similarity_search_with_score(query)
