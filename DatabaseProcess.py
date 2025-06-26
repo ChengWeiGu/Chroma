@@ -6,11 +6,11 @@ from langchain_openai import AzureOpenAIEmbeddings
 
 # create azure embedding function
 embedding_function=AzureOpenAIEmbeddings(
-        openai_api_version="2024-12-01-preview",
+        openai_api_version="<your api version>",
         openai_api_type="azure",
-        openai_api_key="f2ca25bd197746b4ba281eec20369787",
-        azure_endpoint="https://weintek-default-openai.openai.azure.com/",
-        azure_deployment="text-embedding-3-large")
+        openai_api_key="<your api key>",
+        azure_endpoint="<your endpoint>",
+        azure_deployment="<your model name of embedding>")
 
 
 class LangchainChromaDB:
