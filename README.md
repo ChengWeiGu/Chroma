@@ -32,8 +32,8 @@ Here shows some simple methods to prep chroma db from files or webiste
   python run_spec.py -d ./spec_chroma -cn test_collection -s ./SVN_datasheet
   ```
   Note you need to prepare datasheets in `./SVN_datasheet` at first.   
-  In this case, we only process files with extension `.docx` in order to extract tables from files.
-  For inference,
+  In this case, we only process files with extension `.docx` in order to extract tables from word file.   
+  To use the chroma db for vector search, please run   
   ```bash
   Inference.py -s "please show me the spec of cMT2158X"
   ```
