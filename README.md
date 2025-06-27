@@ -8,15 +8,17 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   pip install -r requirements.txt
   ```
 
-## Data Scope  
-- Data1 : Weintek JSSDK   
-  Source: https://dl.weintek.com/public/Document/JS_Object_SDK/Current/   
-  Descr: The Weintek JSSDK (JavaScript Software Development Kit) is a toolkit provided by Weintek to enable advanced scripting capabilities in its HMI products using JavaScript. It allows developers to create custom functionalities, user-defined widgets, and integrate external APIs or data sources into their HMI projects. The JSSDK provides various modules, such as file system operations, web requests, and error handling, to enhance the flexibility and interactivity of HMI applications.   
+## Data Scopes   
 
-- Data2: Datasheets (HMI Spec)   
-  Descr: Weintek provides datasheets for its HMI models including detailed specifications and features of each device   
-  Source: internal SVN or from our official website https://www.weintek.com/globalw/   
-  Take internal SVN for an example, the source would be:   
+- Summary Tables
+  | **Data**  | **Description**                                                                                                                                       | **Source**                                                                                           |
+  |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+  | **Data1** | The Weintek JSSDK (JavaScript Software Development Kit) is a toolkit provided by Weintek to enable advanced scripting capabilities in its HMI products using JavaScript. It allows developers to create custom functionalities, user-defined widgets, and integrate external APIs or data sources into their HMI projects. The JSSDK provides various modules, such as file system operations, web requests, and error handling, to enhance the flexibility and interactivity of HMI applications. | [Weintek JSSDK](https://dl.weintek.com/public/Document/JS_Object_SDK/Current/)                      |
+  | **Data2** | Weintek provides datasheets for its HMI models including detailed specifications and features of each device.                                          | Internal SVN or [Official Website](https://www.weintek.com/globalw/)                               |
+  | **Data3** | Weintek offer many kind of manuals for user about EBPro, trouble shooting, FAQs, demo projects, ...etc.                                               | Internal SVN or [Official Website](https://www.weintek.com/globalw/)                               |
+  
+- Folder structure from SVN   
+  Take **Data2** for an example, the schema would be:   
   ```markdown
   SVN_datasheet/
   ├── Accessory 
@@ -26,11 +28,7 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   ├── ...
   └── mTV
   ``` 
-  
-- Data3: Manuals   
-  Descr: Weintek offer many kind of manuals for user about EBPro, trouble shooting, FAQs, demo projects, ...etc.   
-  Source: internal SVN or from https://www.weintek.com/globalw/   
-  Take internal SVN for an example, the source would be:   
+  Take **Data3** for an example, the schema would be:   
   ```markdown
   SVN_manual/
   ├── EDM // Example Projects for Product Users/Customers
