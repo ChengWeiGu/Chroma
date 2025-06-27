@@ -19,7 +19,7 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   
 - Folder structure from SVN
   
-  1. Take **Data2** for an example, the schema would be:   
+  1. Take **Data2** for an example, the schema of source is:   
       ```markdown
       SVN_datasheet/
       ├── Accessory 
@@ -30,7 +30,7 @@ Here shows some simple methods to prep chroma db from svn files or webiste
       └── mTV
       ```
   
-  2. Take **Data3** for an example, the schema would be:   
+  2. Take **Data3** for an example, the schema of source is:   
       ```markdown
       SVN_manual/
       ├── EDM // Example Projects for Product Users/Customers
@@ -41,7 +41,7 @@ Here shows some simple methods to prep chroma db from svn files or webiste
       ``` 
 
 ## Preparation Work   
-In `DatabaseProcess.py` (line 8-13), please properly set azure endpoint, api version, api key, ...etc. before running ETL.   
+In `DatabaseProcess.py`, please properly set azure endpoint, api version, api key, ...etc. before running ETL.   
 ```python
 # create azure embedding function
 embedding_function=AzureOpenAIEmbeddings(
@@ -53,46 +53,48 @@ embedding_function=AzureOpenAIEmbeddings(
 ```
   
 ## ETL Scripts   
-- JSSDK Scope:   
+- Data1-JSSDK:   
   ```bash
   python run_jssdk.py -d ./jsobject_chroma -cn test_collection
   ```
-  Where `-d` means target folder of chroma and `-cn` is the collection name regarding the DB.   
-  Note that any files are not needed, because web crawler is applied in this case.   
+  Where `-d` means target folder of chroma and `-cn` is the collection name in the DB.   
+  Note that files are not needed because web crawler method is applied in this case.   
   Finally, you will see the target chroma `jsobject_chroma` created as follows:   
   ```markdown
   jsobject_chroma/
-  ├── 97f45d8c-711b-4793-8c20-34214b890302/*.*
-  └── chroma.sqlite3 // In the db, the collection name is "test_collection" 
+  ├── 97f45d8c-711b-4793-8c20-34214b890302/*.* // uuid auto created by chroma
+  └── chroma.sqlite3 // In the db, there is a collection called "test_collection" 
 
-- Datasheets Scope:   
+- Data2-Datasheets:   
   ```bash
   python run_spec.py -d ./spec_chroma -cn test_collection -s ./SVN_datasheet
   ```
   Where `-d` means target folder of chroma, `-cn` is the collection name and `-s` represents the path of source data.   
-  Note you need to prepare datasheets in `./SVN_datasheet` at first as mentioned in **data2**. In this case, we only process files with extension `.docx` in order to extract tables from word.   
+  Note you need to prepare datasheets in `./SVN_datasheet` at first as mentioned in **data2**. In this case, we only process files with extension `.docx` in order to extract tables from files.   
 
-- Manuals Scope:   
+- Data3-Manuals:   
   ```bash
   python run_manual.py -d ./manual_chroma -cn test_collection -s ./SVN_manual
   ```
   Where `-d` means target folder of chroma, `-cn` is the collection name and `-s` represents the path of source data.   
   This is our most complicated case to tackle five different kinds of manuals. For each of them, extension and language of files should be considered.   
 
-## Inference and Vector Search
-To use chroma db for vector search, please run   
+## Inference   
+To use each chroma db for vector search, please run   
 ```bash
 python run_inference.py <flag> <query>
 ```
-Where `<flag>` in one of   
+Where `<flag>` is one of   
+
 `-j`: vector search on jssdk scope   
 `-s`: vector search on datasheets scope   
 `-m`: vector search on manual scope   
+
 and `<query>` is any question you want to ask.   
 
 Try the following examples:   
 ```bash
-python run_inference.py -j "How to use mouse event for js object?" // jssdk scope
-python run_inference.py -s "please show me the spec of cMT2158X" // spec scope
-python run_inference.py -m "how to install ebpro on windows?" // manual scope
+python run_inference.py -j "How to use mouse event for js object?" // jssdk
+python run_inference.py -s "please show me the spec of cMT2158X" // spec
+python run_inference.py -m "how to install ebpro on windows?" // manual
 ```
