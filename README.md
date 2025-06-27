@@ -20,25 +20,25 @@ Here shows some simple methods to prep chroma db from svn files or webiste
 - Folder structure from SVN
   
   1. Take **Data2** for an example, the schema would be:   
-    ```markdown
-    SVN_datasheet/
-    ├── Accessory 
-    ├── cMT 
-    ├── eMT600 
-    ├── eMT3000
-    ├── ...
-    └── mTV
-    ```
+      ```markdown
+      SVN_datasheet/
+      ├── Accessory 
+      ├── cMT 
+      ├── eMT600 
+      ├── eMT3000
+      ├── ...
+      └── mTV
+      ```
   
   2. Take **Data3** for an example, the schema would be:   
-    ```markdown
-    SVN_manual/
-    ├── EDM // Example Projects for Product Users/Customers
-    ├── EBP // This is EBPro User-Guide Manual for All Chapters
-    ├── FAQ // Frequently Asked Questions for Product Users/Customers
-    ├── FBA // Official Video Explanation for Weintek
-    └── UM0 // Operation Manual for All Products
-    ``` 
+      ```markdown
+      SVN_manual/
+      ├── EDM // Example Projects for Product Users/Customers
+      ├── EBP // This is EBPro User-Guide Manual for All Chapters
+      ├── FAQ // Frequently Asked Questions for Product Users/Customers
+      ├── FBA // Official Video Explanation for Weintek
+      └── UM0 // Operation Manual for All Products
+      ``` 
 
 ## Preparation Work   
 In `DatabaseProcess.py` (line 8-13), please properly set azure endpoint, api version, api key, ...etc. before running ETL.   
