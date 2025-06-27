@@ -17,10 +17,23 @@ Here shows some simple methods to prep chroma db from files or webiste
 - Data2: Datasheets (HMI Spec)   
   Source: https://www.weintek.com/globalw/ (download from our official website)   
   Descr: Weintek provides datasheets for its HMI models, which include detailed specifications and features of each device
+
+- Data3: Guide Manuals    
+  Source: https://www.weintek.com/globalw/ (download from our official website)
+  Schema:   
+  ```markdown
+  SVN_manual/
+  ├── EDM // Example Projects for Product Users/Customers
+  ├── EBP // This is EBPro User-Guide Manual for All Chapters
+  ├── FAQ // Frequently Asked Questions for Product Users/Customers
+  ├── FBA // Official Video Explanation for Weintek
+  └── UM0 // Operation Manual for All Products
+  ```
+  Descr: Weintek offer many kind of manuals for user about EBPro, trouble shooting, demo projects, ...,etc.   
   
 ## Scripts of Langchain Chroma   
 - Preparation Work (Embedding):
-  In `DatabaseProcess.py` within line 8-13, please properly set azure endpoint, api version, api key, ...etc
+  In `DatabaseProcess.py` within line 8-13, please properly set azure endpoint, api version, api key, ...etc.
   ```python
   # create azure embedding function
   embedding_function=AzureOpenAIEmbeddings(
@@ -37,7 +50,7 @@ Here shows some simple methods to prep chroma db from files or webiste
   ```
   Note that any source files are not needed, because web crawler is applied in this case.   
   Then, you will see a chroma folder `jsobject_chroma` created as follows:   
-  ```bash
+  ```markdown
   jsobject_chroma/
   ├── 97f45d8c-711b-4793-8c20-34214b890302/*.*
   └── chroma.sqlite3 // the collection name is `test_collection`
