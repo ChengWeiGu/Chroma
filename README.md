@@ -19,6 +19,17 @@ Here shows some simple methods to prep chroma db from files or webiste
   Descr: Weintek provides datasheets for its HMI models, which include detailed specifications and features of each device
   
 ## Scripts of Langchain Chroma   
+- Preparation Work (Embedding):
+  In `DatabaseProcess.py` within line 8-13, please properly set azure endpoint, api version, api key, ...etc
+  ```python
+  # create azure embedding function
+  embedding_function=AzureOpenAIEmbeddings(
+          openai_api_version="<your api version>",
+          openai_api_type="azure",
+          openai_api_key="<your api key>",
+          azure_endpoint="<your endpoint>",
+          azure_deployment="<your model name of embedding>")
+  ```
 
 - For Weintek JS Object SDK, please run the following cmd
   ```bash
