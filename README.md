@@ -14,9 +14,9 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   Descr: The Weintek JSSDK (JavaScript Software Development Kit) is a toolkit provided by Weintek to enable advanced scripting capabilities in its HMI products using JavaScript. It allows developers to create custom functionalities, user-defined widgets, and integrate external APIs or data sources into their HMI projects. The JSSDK provides various modules, such as file system operations, web requests, and error handling, to enhance the flexibility and interactivity of HMI applications.   
 
 - Data2: Datasheets (HMI Spec)   
-  Descr: Weintek provides datasheets for its HMI models, which include detailed specifications and features of each device   
+  Descr: Weintek provides datasheets for its HMI models including detailed specifications and features of each device   
   Source: internal SVN or from our official website https://www.weintek.com/globalw/   
-  Take internal SVN for an example, the folder schema would be:   
+  Take internal SVN for an example, the source would be:   
   ```markdown
   SVN_datasheet/
   ├── Accessory 
@@ -30,7 +30,7 @@ Here shows some simple methods to prep chroma db from svn files or webiste
 - Data3: Manuals   
   Descr: Weintek offer many kind of manuals for user about EBPro, trouble shooting, FAQs, demo projects, ...etc.   
   Source: internal SVN or from https://www.weintek.com/globalw/   
-  Take internal SVN for an example, the folder schema is:   
+  Take internal SVN for an example, the source would be:   
   ```markdown
   SVN_manual/
   ├── EDM // Example Projects for Product Users/Customers
@@ -40,9 +40,9 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   └── UM0 // Operation Manual for All Products
   ``` 
   
-## Scripts of Langchain Chroma   
-- Preparation Work (Embedding):
-  In `DatabaseProcess.py` within line 8-13, please properly set azure endpoint, api version, api key, ...etc. before running scripts.   
+## Scripts of ETL for Langchain Chroma   
+- Preparation Work of Embedding:   
+  In `DatabaseProcess.py` (line 8-13), please properly set azure endpoint, api version, api key, ...etc. before running scripts.   
   ```python
   # create azure embedding function
   embedding_function=AzureOpenAIEmbeddings(
@@ -53,12 +53,12 @@ Here shows some simple methods to prep chroma db from svn files or webiste
           azure_deployment="<your model name of embedding>")
   ```
 
-- For Weintek JS Object SDK, please run the following cmd   
+- ETL of Weintek JS Object SDK:   
   ```bash
   python run_jssdk.py -d ./jsobject_chroma -cn test_collection
   ```
-  Where `-d` means target folder of chroma and `-cn` is the collection name regarding the DB.     
-  Note that any source files are not needed, because web crawler is applied in this case.   
+  Where `-d` means target folder of chroma and `-cn` is the collection name regarding the DB.   
+  Note that any files are not needed, because web crawler is applied in this case.   
   Finally, you will see the target chroma `jsobject_chroma` created as follows:   
   ```markdown
   jsobject_chroma/
@@ -69,10 +69,9 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   ```bash
   python run_inference.py -j <query>
   ```
-  where `<query>` is any question you want to ask. For example, "How to use mouse event for js object?"   
-  The flag `-j` means doing inference for weintek js sdk.   
+  where the flag `-j` means inference of jssdk and `<query>` is any question you want to ask. For example, "How to use mouse event for js object?"   
 
-- For Weintek Datasheets, please build chroma db with   
+- ETL of Weintek Datasheets:   
   ```bash
   python run_spec.py -d ./spec_chroma -cn test_collection -s ./SVN_datasheet
   ```
@@ -83,13 +82,18 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   ```bash
   python run_inference.py -s "please show me the spec of cMT2158X"
   ```
-  Where your `<query>` comes after the flag `-s` which means implementing inference for datasheets.
+  Where your `<query>` comes after the flag `-s` which means implementing inference for datasheets.   
 
-- For Weintek Manuals, please build chroma db with
+- ETL of Weintek Manuals:   
   ```bash
   python run_manual.py -d ./manual_chroma -cn test_collection -s ./SVN_manual
   ```
-  Where `-d` means target folder of chroma, `-cn` is the collection name regarding the DB and `-s` represents the path of source data.
-  This is our most complicated case to tackle five different kinds of manuals. For each of them, extension and language of files should be considered.
+  Where `-d` means target folder of chroma, `-cn` is the collection name and `-s` represents the path of source data.   
+  This is our most complicated case to tackle five different kinds of manuals. For each of them, extension and language of files should be considered.   
+  To use the chroma db for vector search:   
+  ```bash
+  python run_inference.py -m "how to install ebpro on windows?"
+  ```
+  Where flag `-m` represents vector searching on manual scope.   
   
   
