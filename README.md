@@ -16,8 +16,9 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   | **Data2** | Weintek provides datasheets for its HMI models including detailed specifications and features of each device.                                          | Internal SVN or [Official Website](https://www.weintek.com/globalw/)                               |
   | **Data3** | Weintek offer many kind of manuals for user about EBPro, trouble shooting, FAQs, demo projects, ...etc.                                               | Internal SVN or [Official Website](https://www.weintek.com/globalw/)                               |
   
-- Folder structure from SVN   
-  Take **Data2** for an example, the schema would be:   
+- Folder structure from SVN
+  
+  1. Take **Data2** for an example, the schema would be:   
   ```markdown
   SVN_datasheet/
   ├── Accessory 
@@ -26,8 +27,9 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   ├── eMT3000
   ├── ...
   └── mTV
-  ``` 
-  Take **Data3** for an example, the schema would be:   
+  ```
+  
+  2. Take **Data3** for an example, the schema would be:   
   ```markdown
   SVN_manual/
   ├── EDM // Example Projects for Product Users/Customers
@@ -49,8 +51,8 @@ embedding_function=AzureOpenAIEmbeddings(
         azure_deployment="<your model name of embedding>")
 ```
   
-## ETL Scripts for Langchain Chroma   
-- ETL of JS Object SDK:   
+## ETL Scripts   
+- JSSDK Scope:   
   ```bash
   python run_jssdk.py -d ./jsobject_chroma -cn test_collection
   ```
@@ -62,14 +64,14 @@ embedding_function=AzureOpenAIEmbeddings(
   ├── 97f45d8c-711b-4793-8c20-34214b890302/*.*
   └── chroma.sqlite3 // In the db, the collection name is "test_collection" 
 
-- ETL of Datasheets:   
+- Datasheets Scope:   
   ```bash
   python run_spec.py -d ./spec_chroma -cn test_collection -s ./SVN_datasheet
   ```
   Where `-d` means target folder of chroma, `-cn` is the collection name and `-s` represents the path of source data.   
   Note you need to prepare datasheets in `./SVN_datasheet` at first as mentioned in **data2**. In this case, we only process files with extension `.docx` in order to extract tables from word.   
 
-- ETL of Manuals:   
+- Manuals Scope:   
   ```bash
   python run_manual.py -d ./manual_chroma -cn test_collection -s ./SVN_manual
   ```
