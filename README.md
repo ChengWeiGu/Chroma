@@ -65,22 +65,22 @@ Here shows some simple methods to prep chroma db from svn files or webiste
   ```
   To use the chroma db for vector search, please run   
   ```bash
+  // Try <query> = "How to use mouse event for js object?" 
   python run_inference.py -j <query>
   ```
-  where the flag `-j` means inference of jssdk and `<query>` is any question you want to ask. For example, "How to use mouse event for js object?"   
+  where flag `-j` means vector searching of jssdk and `<query>` is any question you want to ask.     
 
 - ETL of Weintek Datasheets:   
   ```bash
   python run_spec.py -d ./spec_chroma -cn test_collection -s ./SVN_datasheet
   ```
-  Where `-d` means target folder of chroma, `-cn` is the collection name regarding the DB and `-s` represents the path of source data.   
-  Note you need to prepare datasheets in `./SVN_datasheet` at first as mentioned in data2.   
-  In this case, we only process files with extension `.docx` in order to extract tables from word.   
+  Where `-d` means target folder of chroma, `-cn` is the collection name and `-s` represents the path of source data.   
+  Note you need to prepare datasheets in `./SVN_datasheet` at first as mentioned in **data2**. In this case, we only process files with extension `.docx` in order to extract tables from word.   
   To use the chroma db for vector search, please run   
   ```bash
   python run_inference.py -s "please show me the spec of cMT2158X"
   ```
-  Where your `<query>` comes after the flag `-s` which means implementing inference for datasheets.   
+  Where your `<query>` comes after the flag `-s` to implement vector searching for datasheets.   
 
 - ETL of Weintek Manuals:   
   ```bash
