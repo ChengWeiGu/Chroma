@@ -2,6 +2,7 @@
 import os
 import glob
 import docx
+import time
 import argparse
 from tqdm import tqdm
 import DatabaseProcess
@@ -92,10 +93,19 @@ class SpecScanner:
                              total=len(doc_list), 
                              desc="Inserting documents one by one",
                              unit="pcs"):
-            try:
-                lcdb_obj.insert_data2db([document])  # 逐筆插入，避免觸發存取速率限制
-            except Exception as e:
-                print(f"Error inserting document: {document.metadata['source']}, Error: {e}")
+            #失敗重試
+            try_cnt = 0
+            max_retry = 3
+            while try_cnt < max_retry:
+                try:
+                    lcdb_obj.insert_data2db([document])  # 逐筆插入，避免觸發存取速率限制
+                    break
+                except Exception as e:
+                    try_cnt += 1
+                    print(f"Error inserting document: {document.metadata['source']}, Error: {e}\n Wait for a min...")
+                    time.sleep(60) # 休息 1 min
+            else:
+                print(f"Failed to insert document after {max_retry} attempts: {document.metadata['source']}")
     
 
 def main():
