@@ -7,8 +7,18 @@ Here shows some simple methods to prep chroma db from files or webiste
   ```bash
   pip install -r requirements.txt
   ```
+
+## Data Scope  
+
+- Data1 : Weintek JSSDK   
+  Source: https://dl.weintek.com/public/Document/JS_Object_SDK/Current/   
+  Descr: The Weintek JSSDK (JavaScript Software Development Kit) is a toolkit provided by Weintek to enable advanced scripting capabilities in its HMI products using JavaScript. It allows developers to create custom functionalities, user-defined widgets, and integrate external APIs or data sources into their HMI projects. The JSSDK provides various modules, such as file system operations, web requests, and error handling, to enhance the flexibility and interactivity of HMI applications.   
+
+- Data2: Datasheets (HMI Spec)   
+  Source: https://www.weintek.com/globalw/ (download from our official website)   
+  Descr: Weintek provides datasheets for its HMI models, which include detailed specifications and features of each device
   
-## Scripts   
+## Scripts of Langchain Chroma   
 
 - For Weintek JS Object SDK, please run the following cmd
   ```bash
@@ -23,9 +33,10 @@ Here shows some simple methods to prep chroma db from files or webiste
   ```
   To use the chroma db for vector search, please run   
   ```bash
-  python Inference.py -j <query>
+  python run_inference.py -j <query>
   ```
-  where `<query>` is any question you want to ask. For example, "How to use mouse event for js object?"
+  where `<query>` is any question you want to ask. For example, "How to use mouse event for js object?"   
+  The flag `-j` means doing inference for weintek js sdk.
 
 - For Weintek Datasheets, please build chroma db by
   ```bash
@@ -35,5 +46,6 @@ Here shows some simple methods to prep chroma db from files or webiste
   In this case, we only process files with extension `.docx` in order to extract tables from word file.   
   To use the chroma db for vector search, please run   
   ```bash
-  Inference.py -s "please show me the spec of cMT2158X"
+  python run_inference.py -s "please show me the spec of cMT2158X"
   ```
+  Where your `<query>` comes after the flag `-s` which means doing inference for datasheets.
