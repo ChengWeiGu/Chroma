@@ -94,6 +94,53 @@ and `<query>` is any question you want to ask.
 
 Try the following examples:   
 ```bash
+// Example 1: jssdk
+python run_inference.py -j "How to use mouse event for js object?" // jssdk
+
+// ****Output Text from Summary Agent****
+To use a mouse event for a JS Object in Weintek's environment, follow these steps:
+
+1. **Create a JS Object**:
+   - Go to the desired window (e.g., Window #10) and create a JS Object.
+
+2. **Add the Source Code**:
+   - Copy the following code and paste it into the Source Code page of the JS Object:
+     ```javascript
+     // Create a function to be triggered
+     function helloWorld() {
+         console.log("Hello world!");
+     }
+
+     // Create a mouse detection area
+     var ma = new MouseArea();
+
+     // Add the MouseArea to the current widget
+     this.widget.add(ma);
+
+     // Trigger the function when a specific mouse event occurs
+     ma.on("mousedown", helloWorld);
+     ```
+
+3. **Simulate the Project**:
+   - Simulate the project in the cMT Viewer.
+
+4. **Verify the Mouse Event**:
+   - Open the **cMT Diagnoser** by right-clicking and selecting the **JS tab** (JavaScript console).
+   - Click on the JS Object in the cMT Viewer. You should see "Hello world!" logged in the cMT Diagnoser.
+
+5. **Modify Mouse Events**:
+   - You can replace `"mousedown"` in the code with other supported events such as `"mouseup"`, `"click"`, or `"mousemove"`, based on your requirements.
+
+Example:
+```javascript
+ma.on("mousemove", helloWorld);
+```
+
+If you have further questions or need clarification, please feel free to ask!None
+```
+
+
+```bash
 python run_inference.py -j "How to use mouse event for js object?" // jssdk
 python run_inference.py -s "please show me the spec of cMT2158X" // spec
 python run_inference.py -m "how to install ebpro on windows?" // manual
