@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 import DatabaseProcess
+import OpenAIFunction
 
 
 if __name__ == '__main__':
@@ -10,6 +11,10 @@ if __name__ == '__main__':
     parser.add_argument('-s','--spec', type=str, help='spec inference, 請輸入query')
     parser.add_argument('-m','--manual', type=str, help='manual inference, 請輸入query')
     args = parser.parse_args()
+    
+    # init working context and agent object
+    working_context = ""
+    summary_agent = OpenAIFunction.SummaryAgent()
     
     if args.js:
         '''**
@@ -74,3 +79,11 @@ if __name__ == '__main__':
         # working context for LLM later
         working_context = "\n".join([doc[0].page_content for doc in res_docs])
         print(working_context)
+    
+    print("\n\n")
+        
+    # llm response
+    if working_context.strip() != "" and query.strip() != "":
+        for output in summary_agent.generate_answer(query, working_context):
+            if output: print(output, end='')
+        print("\n\n")
