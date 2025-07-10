@@ -52,7 +52,7 @@ embedding_function=AzureOpenAIEmbeddings(
         azure_deployment="<your model name of embedding>")
 ```
 
-Similarily, one should also prepare the azure settings for ChatGPT API in `OpenAIFunction.py` before running inference:   
+Similarly, one should also prepare the azure settings for ChatGPT API in `OpenAIFunction.py` before running inference:   
 ```python
 ## default setting
 chat_settings = {
