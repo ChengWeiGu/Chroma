@@ -93,11 +93,11 @@ Where `<flag>` is one of
 and `<query>` is any question you want to ask.   
 
 Try the following examples:   
-```bash
+```markdown
 // Example 1: jssdk
 python run_inference.py -j "How to use mouse event for js object?" // jssdk
 
-// ****Output Text from Summary Agent****
+// ***Output Text from Summary Agent****
 To use a mouse event for a JS Object in Weintek's environment, follow these steps:
 
 1. **Create a JS Object**:
