@@ -108,7 +108,7 @@ and `<query>` is any question you want to ask.
 
 Try the following examples:   
 
-- JSSDK:   
+- JSSDK   
 ```markdown
 // Example 1: jssdk
 python run_inference.py -j "How to use mouse event for js object?"
@@ -122,7 +122,7 @@ Please refer to the demo image under ./demo_imgs/demo_llm_jssdk.png
 You will see the summary from an agent.
 ```
 
-- Spec:
+- Spec   
 ```markdown
 // Example 2: spec
 python run_inference.py -s "please show me the spec of cMT2158X"
@@ -136,10 +136,10 @@ Please refer to the demo image under ./demo_imgs/demo_llm_spec.png
 You will see the summary from an agent.
 ```
 
-- Manual
+- Manual   
 ```markdown
 // Example 3: manual
-python run_inference.py -m "how to install ebpro on windows?" // manual
+python run_inference.py -m "how to install ebpro on windows?"
 
 // Retrieval Output (working context)
 Please refer to the demo image under ./demo_imgs/demo_retrieval_manual.png
