@@ -51,6 +51,20 @@ embedding_function=AzureOpenAIEmbeddings(
         azure_endpoint="<your endpoint>",
         azure_deployment="<your model name of embedding>")
 ```
+
+Similarily, one should also prepare the azure settings for ChatGPT API in `OpenAIFunction.py` before running inference:   
+```python
+## default setting
+chat_settings = {
+    'endpoint':"<your endpoint>",
+    'api_key1':"<your api key1>",
+    'api_key2':"<your api key2>",
+    'region':"eastus",           # e.g. as swedencentral, westus, ...
+    'api_version':"<your api version>",
+    'chat_model':"<your model name of chatgpt>",
+    'api_type':"azure"
+}
+```
   
 ## ETL Scripts   
 - Data1-JSSDK:   
@@ -93,55 +107,45 @@ Where `<flag>` is one of
 and `<query>` is any question you want to ask.   
 
 Try the following examples:   
+
+- JSSDK:   
 ```markdown
 // Example 1: jssdk
-python run_inference.py -j "How to use mouse event for js object?" // jssdk
+python run_inference.py -j "How to use mouse event for js object?"
 
-// ***Output Text from Summary Agent****
-To use a mouse event for a JS Object in Weintek's environment, follow these steps:
+// Retrieval Output (working context)
+Please refer to the demo image under ./demo_imgs/demo_retrieval_jssdk.png
+You will see the ground truth document is at top 1 (top5 hit rate = 1)
 
-1. **Create a JS Object**:
-   - Go to the desired window (e.g., Window #10) and create a JS Object.
-
-2. **Add the Source Code**:
-   - Copy the following code and paste it into the Source Code page of the JS Object:
-     ```javascript
-     // Create a function to be triggered
-     function helloWorld() {
-         console.log("Hello world!");
-     }
-
-     // Create a mouse detection area
-     var ma = new MouseArea();
-
-     // Add the MouseArea to the current widget
-     this.widget.add(ma);
-
-     // Trigger the function when a specific mouse event occurs
-     ma.on("mousedown", helloWorld);
-     ```
-
-3. **Simulate the Project**:
-   - Simulate the project in the cMT Viewer.
-
-4. **Verify the Mouse Event**:
-   - Open the **cMT Diagnoser** by right-clicking and selecting the **JS tab** (JavaScript console).
-   - Click on the JS Object in the cMT Viewer. You should see "Hello world!" logged in the cMT Diagnoser.
-
-5. **Modify Mouse Events**:
-   - You can replace `"mousedown"` in the code with other supported events such as `"mouseup"`, `"click"`, or `"mousemove"`, based on your requirements.
-
-Example:
-```javascript
-ma.on("mousemove", helloWorld);
+// LLM Output:
+Please refer to the demo image under ./demo_imgs/demo_llm_jssdk.png
+You will see the summary from an agent.
 ```
 
-If you have further questions or need clarification, please feel free to ask!None
+- Spec:
+```markdown
+// Example 2: spec
+python run_inference.py -s "please show me the spec of cMT2158X"
+
+// Retrieval Output (working context)
+Please refer to the demo image under ./demo_imgs/demo_retrieval_spec.png
+You will see the ground truth document is at top 1 (top5 hit rate = 1)
+
+// LLM Output:
+Please refer to the demo image under ./demo_imgs/demo_llm_spec.png
+You will see the summary from an agent.
 ```
 
-
-```bash
-python run_inference.py -j "How to use mouse event for js object?" // jssdk
-python run_inference.py -s "please show me the spec of cMT2158X" // spec
+- Manual
+```markdown
+// Example 3: manual
 python run_inference.py -m "how to install ebpro on windows?" // manual
+
+// Retrieval Output (working context)
+Please refer to the demo image under ./demo_imgs/demo_retrieval_manual.png
+You will see the ground truth document is at top 1 (top5 hit rate = 1)
+
+// LLM Output:
+Please refer to the demo image under ./demo_imgs/demo_llm_manual.png
+You will see the summary from an agent.
 ```
